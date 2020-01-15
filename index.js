@@ -1,8 +1,9 @@
 const express=require('express');
+const bodyParser=require('body-parser')
 const app=express();
-app.get('/',(req,res)=>{
-    res.send({"hello":"there"})
-})
+app.use(bodyParser.json())
+require('./routes/dialogflowroutes')(app)
+
 app.listen(process.env.PORT||3000,()=>{
     console.log('server running');
 })
